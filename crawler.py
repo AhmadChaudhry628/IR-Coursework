@@ -213,9 +213,10 @@ def search(query):
                 if publication not in matches:
                     matches.append(publication)
 
+
     # Sort matches by date
     matches.sort(key=lambda x: x["Date"], reverse=True)
-    
+    print(matches)
     return matches
 
 # Schedule to run every 7 days at 00:00
