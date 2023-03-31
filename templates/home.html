@@ -1,0 +1,20 @@
+{% extends "base.html" %} {% block title %}Search Results{% endblock %} {% block
+content %}
+
+<h1>Search Results</h1>
+<form action="/search" method="GET">
+  <div class="form-group">
+    <label for="query">Search Query:</label>
+    <input
+      type="text"
+      class="form-control"
+      id="query"
+      name="query"
+      placeholder="Enter keywords..."
+      required
+    />
+  </div>
+  <button type="submit" class="btn btn-primary">Search</button>
+</form>
+<hr />
+{% if matches %} {% endif %} {% endblock %}

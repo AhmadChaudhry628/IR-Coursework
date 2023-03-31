@@ -1,0 +1,15 @@
+{% extends "base.html" %} {% block content %}
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <h1 class="text-center">Document Clustering Results</h1>
+      <hr />
+      <h3>Input Document:</h3>
+      <p>{{ new_document }}</p>
+      <hr />
+      <h3>Cluster:</h3>
+      <p>{{ predicted_category }}</p>
+    </div>
+  </div>
+</div>
+{% endblock %}

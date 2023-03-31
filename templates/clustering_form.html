@@ -1,0 +1,22 @@
+{% extends "base.html" %} {% block content %}
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <h1 class="text-center">Document Clustering</h1>
+      <form method="POST" action="{{ url_for('cluster') }}">
+        <div class="form-group">
+          <label for="new_document">Enter a new document:</label>
+          <textarea
+            class="form-control"
+            rows="5"
+            id="new_document"
+            name="new_document"
+            required
+          ></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Cluster Document</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
