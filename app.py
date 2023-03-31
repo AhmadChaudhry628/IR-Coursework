@@ -1,5 +1,7 @@
+import os
 from flask import Flask, render_template, request
 from crawler import search
+from helpers import scrape_wikipedia_articles
 import numpy as np
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -7,13 +9,15 @@ from sklearn.cluster import KMeans
 from sklearn.metrics import adjusted_rand_score
 
 app = Flask(__name__)
-
 # Define the categories
 categories = ['Sport', 'Technology', 'Climate']
 
 # Load the documents into a pandas DataFrame
 # Each row should contain a document
-df = pd.read_csv('articles.csv', names=['Sentence'])
+csv_path = os.path.join(os.path.dirname(__file__), 'articles.csv')
+if not os.path.isfile(csv_path):
+    scrape_wikipedia_articles()
+df = pd.read_csv(csv_path, names=['Sentence'])
 
 # Create a TfidfVectorizer object to transform the documents into a document-term matrix
 vectorizer = TfidfVectorizer(stop_words='english')
@@ -35,9 +39,6 @@ kmeans.fit(X)
 labels_true = kmeans.labels_
 score = adjusted_rand_score(labels_true, labels_true)
 print("Clustering performance score: ", score)
-
-
-
 
 @app.route("/")
 def home():
